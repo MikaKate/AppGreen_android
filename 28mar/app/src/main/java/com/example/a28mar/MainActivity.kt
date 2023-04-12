@@ -6,7 +6,11 @@ import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.example.a28mar.model.Product
+import com.google.android.material.tabs.TabLayout
+import com.example.a28mar.page.SlidePageAdapter
+import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,6 +18,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main) //vedi appunti
 
+        //GESTIONE TABS
+        val tabLayout = findViewById<TabLayout>(R.id.tabLayout)
+        val viewPager = findViewById<ViewPager2>(R.id.viewPager)
+        val adapter = SlidePageAdapter(this)
+
+        viewPager.adapter = adapter
+        TabLayoutMediator(tabLayout, viewPager){ tab, position ->
+            tab.text = "Label ${position+1}"
+        }.attach()
+
+        //GESTIONE LISTE
         val products = ArrayList<Product>() //Dichiarazione di un array di stringhe VUOTO
 
         for(n in 1..5){
@@ -21,7 +36,7 @@ class MainActivity : AppCompatActivity() {
             products.add(product) //alla lista vuota products viene aggiunto l'elemento creato
         }
 
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView) //dal file main.xml cerca l'oggetto con id recyclerView
+       /* val recyclerView = findViewById<RecyclerView>(R.id.recyclerView) //dal file main.xml cerca l'oggetto con id recyclerView
 
         val productAdapter = ProductAdapter(products)
         recyclerView.apply {
@@ -40,7 +55,9 @@ class MainActivity : AppCompatActivity() {
                 products.removeAt(position)
                 productAdapter.notifyItemRemoved(position)
             }
-        })
+        })*/
+
+
 
     }
 }
