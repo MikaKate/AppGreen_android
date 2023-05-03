@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         viewPager.adapter = adapter
         TabLayoutMediator(tabLayout, viewPager){ tab, position ->
             tab.text = "Label ${position+1}"
+
         }.attach()
 
         //GESTIONE LISTE
