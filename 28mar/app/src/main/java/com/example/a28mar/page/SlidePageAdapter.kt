@@ -11,14 +11,6 @@ class SlidePageAdapter(fa: FragmentActivity): FragmentStateAdapter(fa) {
 
     override fun createFragment(position: Int): Fragment {
 
-        /*when(position){
-            0 -> return ListFragment()
-            1 -> return ProductFragment()
-            2 -> return ForYouFragment()
-            3 -> return ProfileFragment()
-        }*/
-        /*return if(position == 0) PageFragment() else SecondFragment()*/
-
         return if(position == 0) ListFragment() else if(position == 1) ProductFragment() else if(position == 2)  ForYouFragment() else ProfileFragment()
     }
 }
